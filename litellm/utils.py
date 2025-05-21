@@ -6623,6 +6623,7 @@ class ProviderConfigManager:
         model: str,
         provider: LlmProviders,
     ) -> Optional[BaseFilesConfig]:
+        print("provider is ",provider)
         if LlmProviders.GEMINI == provider:
             from litellm.llms.gemini.files.transformation import (
                 GoogleAIStudioFilesHandler,  # experimental approach, to reduce bloat on __init__.py

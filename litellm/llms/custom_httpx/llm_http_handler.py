@@ -1812,6 +1812,7 @@ class BaseLLMHTTPHandler:
         """
         Creates a file using Gemini's two-step upload process
         """
+        print(f"Inside gemini create file, provider config: {provider_config.get_config()}")
         # get config from model, custom llm provider
         headers = provider_config.validate_environment(
             api_key=api_key,
@@ -1840,8 +1841,10 @@ class BaseLLMHTTPHandler:
             litellm_params=litellm_params,
             optional_params={},
         )
+        print(f"transformed request is: {transformed_request}")
 
         if _is_async:
+            print("Inside sync")
             return self.async_create_file(
                 transformed_request=transformed_request,
                 litellm_params=litellm_params,
@@ -1920,6 +1923,7 @@ class BaseLLMHTTPHandler:
         """
         Creates a file using Gemini's two-step upload process
         """
+        print(f"Inside async create, provider config {provider_config.get_config()}")
         if client is None or not isinstance(client, AsyncHTTPHandler):
             async_httpx_client = get_async_httpx_client(
                 llm_provider=provider_config.custom_llm_provider
