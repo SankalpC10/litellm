@@ -144,7 +144,7 @@ def create_file(
             model="",
             provider=LlmProviders(custom_llm_provider),
         )
-        if provider_config is not None:
+        if provider_config is not None and purpose !="batch":
             response = base_llm_http_handler.create_file(
                 provider_config=provider_config,
                 litellm_params=litellm_params_dict,

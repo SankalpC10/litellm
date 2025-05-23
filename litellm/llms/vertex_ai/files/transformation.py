@@ -262,7 +262,7 @@ class VertexAIFilesConfig(VertexBase, BaseFilesConfig):
         extracted_file_data_content = extracted_file_data.get("content")
         if (
             create_file_data.get("purpose") == "batch"
-            and extracted_file_data.get("content_type") == "application/jsonl"
+            and extracted_file_data.get("content_type") in ["application/jsonl","application/octet-stream"]
             and extracted_file_data_content is not None
         ):
             ## 1. If jsonl, check if there's a model name
